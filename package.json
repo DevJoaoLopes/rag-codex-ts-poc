@@ -13,7 +13,8 @@
     "format": "prettier --write .",
     "test": "vitest run",
     "ingest": "tsx scripts/ingest.ts",
-    "query": "tsx scripts/query.ts"
+    "query": "tsx scripts/query.ts",
+    "smoke": "tsx scripts/smoke.ts"
   },
   "dependencies": {
     "@ai-sdk/react": "^3.0.79",
