@@ -75,7 +75,7 @@ export class InMemoryVectorStore implements VectorStore {
     const now = new Date().toISOString();
 
     for (const doc of docs) {
-      const docId = makeDocId({ title: doc.title, source: doc.source });
+      const docId = doc.id || makeDocId({ title: doc.title, source: doc.source });
       const existing = this.docs.get(docId);
 
       this.docs.set(docId, {
