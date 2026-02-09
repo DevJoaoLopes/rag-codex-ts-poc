@@ -52,16 +52,34 @@ pnpm start
 - `pnpm format`: roda Prettier
 - `pnpm test`: roda Vitest
 
-## Ingest e Query (placeholders)
+## Dados para RAG
+
+Adicione arquivos `.md` e/ou `.txt` em `./data/documents` (subpastas sao suportadas).
+
+Exemplo:
+
+```bash
+mkdir -p data/documents/manual
+echo "# Guia\n\nConteudo de exemplo." > data/documents/manual/guia.md
+```
+
+## Ingest e Query
 
 ```bash
 pnpm ingest
-pnpm query
+pnpm query -- "Qual e o conteudo do guia?" --topK 8
 ```
 
-Os scripts estao em:
+Opcoes do ingest:
 
-- `scripts/ingest.ts`
-- `scripts/query.ts`
+- `--dir <path>`: diretório raiz dos documentos (default `./data/documents`)
+- `--reset`: limpa o storage antes da ingestao
+- `--limit <n>`: limita quantidade de documentos para debug
 
-Nesta etapa, o RAG ainda nao foi implementado; apenas o scaffold e estrutura.
+Exemplo com reset e limite:
+
+```bash
+pnpm ingest -- --reset --limit 10
+```
+
+Os scripts estao em `scripts/ingest.ts` e `scripts/query.ts`.
